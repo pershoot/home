@@ -126,5 +126,5 @@ function az-login-sp() {
 }
 
 function terraform-az-sp() {
-        (export $(grep -v '^\[' $HOME/.azure/credentials | sed 's/client_id/arm_client_id/; s/secret/arm_client_secret/; s/tenant/arm_tenant_id/; s/subscription_id/arm_subscription_id/; s/^[^=]*/\U&\E/' | xargs) && terraform $*)
+        (export $(grep -v '^\[' $HOME/.azure/credentials | sed 's/client_id/arm_client_id/; s/secret/arm_client_secret/; s/tenant/arm_tenant_id/; s/subscription_id/arm_subscription_id/; s/^[^=]*/\U&\E/' | xargs) && terraform $* && { [[ $* =~ ^(destroy) && $? -eq 0 ]] && rm -f $HOME/dev/ansible/hosts-azure; })
 }
