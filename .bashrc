@@ -115,3 +115,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+alias docker=docker.exe
+alias docker-compose=docker-compose.exe
