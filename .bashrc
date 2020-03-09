@@ -120,3 +120,7 @@ alias docker=docker.exe
 alias docker-compose=docker-compose.exe
 
 export PATH=$PATH:~/.local/bin
+
+function az-login-sp() {
+        (export $(grep -v '^\[' $HOME/.azure/credentials | xargs) && az login --service-principal -u $application_id -p $client_secret --tenant $directory_id)
+}
