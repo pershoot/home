@@ -124,3 +124,7 @@ export PATH=$PATH:~/.local/bin
 function az-login-sp() {
         (export $(grep -v '^\[' $HOME/.azure/credentials | xargs) && az login --service-principal -u $application_id -p $client_secret --tenant $directory_id)
 }
+
+function terraform-az-sp() {
+        (export $(grep -v '^\[' $HOME/.azure/credentials | sed 's/application_id/arm_client_id/; s/client_secret/arm_client_secret/; s/directory_id/arm_tenant_id/; s/subscription_id/arm_subscription_id/; s/^[^=]*/\U&\E/' | xargs) && terraform $*)
+}
