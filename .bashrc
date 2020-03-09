@@ -122,7 +122,7 @@ alias docker-compose=docker-compose.exe
 export PATH=$PATH:~/.local/bin
 
 function az-login-sp() {
-        (export $(grep -v '^\[' $HOME/.azure/credentials | sed '/subscription_id/d' | xargs) && az login --service-principal -u $application_id -p $client_secret --tenant $directory_id)
+        (export $(grep -v '^\[' $HOME/.azure/credentials | sed '/subscription_id/d; s/client_id/application_id/; s/secret/client_secret/; s/tenant/directory_id/' | xargs) && az login --service-principal -u $application_id -p $client_secret --tenant $directory_id)
 }
 
 function terraform-az-sp() {
