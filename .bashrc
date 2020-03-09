@@ -118,3 +118,5 @@ fi
 
 alias docker=docker.exe
 alias docker-compose=docker-compose.exe
+
+export PATH=$PATH:~/.local/bin
